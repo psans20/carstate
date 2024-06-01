@@ -1,6 +1,6 @@
 "use client";
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { IoCalendarNumberOutline, IoCalculatorOutline, IoSpeedometerOutline } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
@@ -36,7 +36,7 @@ const PrevArrow = (props) => {
   );
 };
 
-export default function Vehicle() {
+const VehicleDetails = () => {
   const searchParams = useSearchParams();
   const index = searchParams.get('index');
   const [car, setCar] = useState(null);
@@ -67,23 +67,19 @@ export default function Vehicle() {
   };
 
   return (
-    <main>
-      <Navbar />
-      <div className="flex flex-col justify-around items-center text-white font-semibold gap-y-6 px-4 md:px-72">
-        <div id="title" className="flex flex-row justify-between mt-4 w-full">
-          <h1 className="w-36 md:text-xl md:w-48">{car.Make} {car.Model}</h1>
-          <h1 className='text-lg md:text-2xl'>£{comma(car.Price)}</h1>
-        </div>
-        <Slider {...settings} className="w-full">
-          {car.Images.map((image, idx) => (
-            <div key={idx}>
-              <img src={image} alt={`${car.Make} ${car.Model}`} className="w-full" />
-            </div>
-          ))}
-        </Slider>
-        <button className="bg-[#3a87de] text-white font-semibold w-full md:w-96 h-12 mt-4 rounded-md">Call Us</button>
+    <div className="flex flex-col justify-around items-center text-white font-semibold gap-y-6 px-4 md:px-72">
+      <div id="title" className="flex flex-row justify-between mt-4 w-full">
+        <h1 className="w-36 md:text-xl md:w-48">{car.Make} {car.Model}</h1>
+        <h1 className='text-lg md:text-2xl'>£{comma(car.Price)}</h1>
       </div>
-
+      <Slider {...settings} className="w-full">
+        {car.Images.map((image, idx) => (
+          <div key={idx}>
+            <img src={image} alt={`${car.Make} ${car.Model}`} className="w-full" />
+          </div>
+        ))}
+      </Slider>
+      <button className="bg-[#3a87de] text-white font-semibold w-full md:w-96 h-12 mt-4 rounded-md">Call Us</button>
       <div className='grid grid-cols-3 md:flex md:flex-row md:justify-around bg-[#17161c] text-white w-full gap-8 mt-8 py-6'>
         <li className='flex flex-col gap-y-2 items-center'>
           <IoCalendarNumberOutline size={30} />
@@ -128,6 +124,17 @@ export default function Vehicle() {
           </div>
         </li>
       </div>
+    </div>
+  );
+};
+
+export default function Vehicle() {
+  return (
+    <main>
+      <Navbar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <VehicleDetails />
+      </Suspense>
       <Footer />
     </main>
   );
