@@ -81,6 +81,7 @@ export default function Browse() {
             return matchMake && matchModel && matchPrice && matchYear && matchMileage;
         });
         setFilteredCars(filtered);
+        setIsSearchVisible(false); // Optionally hide the search box after search
     };
 
     const carCount = filteredCars.length;
@@ -89,7 +90,7 @@ export default function Browse() {
     const generatePriceOptions = () => {
         const options = [];
         for (let i = minPrice; i <= maxPrice; i += 1000) {
-            options.push(`£${i.toLocaleString()}`);
+            options.push(i);
         }
         return options;
     };
@@ -107,7 +108,7 @@ export default function Browse() {
     const generateMileageOptions = () => {
         const options = [];
         for (let i = minMileage; i <= maxMileage; i += 5000) {
-            options.push(`${i.toLocaleString()} miles`);
+            options.push(i);
         }
         return options;
     };
@@ -119,7 +120,7 @@ export default function Browse() {
                 {!isSearchVisible && (
                     <button
                         className="bg-[#3a87de] text-white font-semibold h-12 mt-4 rounded-md w-full md:hidden"
-                        onClick={handleSearchButtonClick}
+                        onClick={() => setIsSearchVisible(true)}
                     >
                         Show Search
                     </button>
@@ -167,7 +168,7 @@ export default function Browse() {
                                     onChange={(e) => setMinPrice(Number(e.target.value))}
                                 >
                                     {generatePriceOptions().map((price, index) => (
-                                        <option key={index} value={price}>{price}</option>
+                                        <option key={index} value={price}>{`£${price.toLocaleString()}`}</option>
                                     ))}
                                 </select>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -180,7 +181,7 @@ export default function Browse() {
                                     onChange={(e) => setMaxPrice(Number(e.target.value))}
                                 >
                                     {generatePriceOptions().map((price, index) => (
-                                        <option key={index} value={price}>{price}</option>
+                                        <option key={index} value={price}>{`£${price.toLocaleString()}`}</option>
                                     ))}
                                 </select>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -231,7 +232,7 @@ export default function Browse() {
                                     onChange={(e) => setMinMileage(Number(e.target.value))}
                                 >
                                     {generateMileageOptions().map((mileage, index) => (
-                                        <option key={index} value={mileage}>{mileage}</option>
+                                        <option key={index} value={mileage}>{`${mileage.toLocaleString()} miles`}</option>
                                     ))}
                                 </select>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -244,7 +245,7 @@ export default function Browse() {
                                     onChange={(e) => setMaxMileage(Number(e.target.value))}
                                 >
                                     {generateMileageOptions().map((mileage, index) => (
-                                        <option key={index} value={mileage}>{mileage}</option>
+                                        <option key={index} value={mileage}>{`${mileage.toLocaleString()} miles`}</option>
                                     ))}
                                 </select>
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -277,7 +278,7 @@ export default function Browse() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 2xl:gap-x-12 gap-4 p-4">
                 {filteredCars.map((car, index) => (
-                    <Carad key={index} car={car} />
+                    <Carad key={index} car={car} index={index} />
                 ))}
             </div>
             <Footer/>

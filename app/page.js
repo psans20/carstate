@@ -106,7 +106,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:px-72 2xl:mr-40 gap-4 lg:gap-1 px-4">
   {filteredCars.slice(0, 3).map((car, index) => (
-    <Carad key={index} car={car} />
+    <Carad key={index} car={car} index={index} />
   ))}
 </div>
 
