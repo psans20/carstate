@@ -2,32 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #181c25;
+  background-image: url("https://img.freepik.com/free-vector/gradient-dark-dynamic-lines-background_23-2148995950.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+#search {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #ffffff19;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #007bff;
+}
+
+select option {
+  background: #16161b;
+}
+
+#search::after,
+#result-select::after {
+  content: "";
+  position: absolute;
+  top: 65%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+  pointer-events: none;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+#min-price,
+#max-price {
+  appearance: none;
+  -webkit-appearance: none; /* for Safari */
+  -moz-appearance: none;    /* for Firefox */
+}
+
+#min-price::after,
+#max-price::after {
+  content: "";
+  position: absolute;
+  top: 65%;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+  pointer-events: none;
+}
+
+#result {
+  background: transparent;
 }

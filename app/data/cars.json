@@ -1,0 +1,69 @@
+{
+  "cars": [
+    { 
+      "Make": "Toyota",
+      "Model": "Corolla",
+      "Year": "2019",
+      "Mileage": "35000",
+      "Transmission": "Automatic",
+      "Images": [
+        "https://demo67900.autoserver.co.uk/media/vehicle-eCqfXboj/n7IoSTtO-600x450-0x0.jpg?1716894227",
+        "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+      ],
+      "Fuel": "Petrol",
+      "Price": 13000
+    },
+    {
+      "Make": "Mercedez-Benz",
+      "Model": "A Class AMG",
+      "Year": "2020",
+      "Mileage": "56000",
+      "Transmission": "Automatic",
+      "Images": [
+        "https://m.atcdn.co.uk/a/media/w800h600/95f50ed5e97147ebae3d813390ff8749.jpg",
+        "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+      ],
+      "Fuel": "Petrol",
+      "Price": "16500"
+    },
+    {
+      "Make": "Mercedez-Benz",
+      "Model": "A Class AMG",
+      "Year": "2020",
+      "Mileage": "56000",
+      "Transmission": "Automatic",
+      "Images": [
+        "https://m.atcdn.co.uk/a/media/w800h600/95f50ed5e97147ebae3d813390ff8749.jpg",
+        "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+      ],
+      "Fuel": "Petrol",
+      "Price": "16500"
+    },
+    {
+      "Make": "Mercedez-Benz",
+      "Model": "A Class AMG",
+      "Year": "2020",
+      "Mileage": "56000",
+      "Transmission": "Automatic",
+      "Images": [
+        "https://m.atcdn.co.uk/a/media/w800h600/95f50ed5e97147ebae3d813390ff8749.jpg",
+        "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+      ],
+      "Fuel": "Petrol",
+      "Price": "16500"
+    },
+    {
+      "Make": "Mercedez-Benz",
+      "Model": "A Class AMG",
+      "Year": "2020",
+      "Mileage": "56000",
+      "Transmission": "Automatic",
+      "Images": [
+        "https://m.atcdn.co.uk/a/media/w800h600/95f50ed5e97147ebae3d813390ff8749.jpg",
+        "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+      ],
+      "Fuel": "Petrol",
+      "Price": "16500"
+    }
+  ]
+}
