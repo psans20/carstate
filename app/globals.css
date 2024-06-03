@@ -3,13 +3,37 @@
 @tailwind utilities;
 
 body {
-  background: #181c25;
+  background-color: #181c25; /* Fallback color */
   background-image: url("https://img.freepik.com/free-vector/gradient-dark-dynamic-lines-background_23-2148995950.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center center;
   background-size: cover;
+  min-height: 100vh; /* Ensure body covers the full height */
 }
+
+/* Ensure better handling on high-resolution displays */
+@media only screen and (min-device-pixel-ratio: 2),
+only screen and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    background-image: url("https://img.freepik.com/free-vector/gradient-dark-dynamic-lines-background_23-2148995950.jpg");
+  }
+}
+
+/* Optimize for small screens */
+@media only screen and (max-width: 768px) {
+  body {
+    background-size: cover; /* Ensure the background covers the whole screen */
+  }
+}
+
+/* Optimize for very small screens */
+@media only screen and (max-width: 480px) {
+  body {
+    background-size: cover; /* Ensure the background covers the whole screen */
+  }
+}
+
 
 #search {
   position: relative;
