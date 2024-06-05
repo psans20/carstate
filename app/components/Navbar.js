@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <nav className="p-4 md:p-6">
       <div className="flex justify-between items-center mx-4">
-        <h2 className="text-white font-semibold text-lg">Logo</h2>
+        <img src="https://i.ibb.co/6WpPk03/car-state-logo2-01.png" className='w-24 md:w-28'/>
 
         <button 
           className="md:hidden" 
