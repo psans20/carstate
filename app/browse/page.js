@@ -70,11 +70,11 @@ export default function Browse() {
 
     const handleSortChange = (event) => {
         setSortCriteria(event.target.value);
-        sortCars(event.target.value);
+        sortCars(event.target.value, filteredCars);
     };
 
-    const sortCars = (criteria) => {
-        let sortedCars = [...filteredCars];
+    const sortCars = (criteria, cars) => {
+        let sortedCars = [...cars];
         switch (criteria) {
             case 'Mileage':
                 sortedCars.sort((a, b) => a.Mileage - b.Mileage);
@@ -103,16 +103,19 @@ export default function Browse() {
             const matchMileage = car.Mileage >= minMileage && car.Mileage <= maxMileage;
             return matchMake && matchModel && matchPrice && matchYear && matchMileage;
         });
+        sortCars(sortCriteria, filtered);
         setFilteredCars(filtered);
         setIsSearchVisible(false);
-        sortCars(sortCriteria);
     };
 
     const carCount = filteredCars.length;
 
     const generatePriceOptions = () => {
         const options = [];
-        for (let i = minPrice; i <= maxPrice; i += 1000) {
+        const prices = carsData.cars.map(car => car.Price);
+        const minPriceRounded = Math.floor(Math.min(...prices) / 1000) * 1000;
+        const maxPriceRounded = Math.ceil(Math.max(...prices) / 1000) * 1000;
+        for (let i = minPriceRounded; i <= maxPriceRounded; i += 1000) {
             options.push(i);
         }
         return options;
@@ -120,6 +123,9 @@ export default function Browse() {
 
     const generateYearOptions = () => {
         const options = [];
+        const years = carsData.cars.map(car => car.Year);
+        const minYear = Math.min(...years);
+        const maxYear = Math.max(...years);
         for (let i = minYear; i <= maxYear; i++) {
             options.push(i);
         }
@@ -128,7 +134,10 @@ export default function Browse() {
 
     const generateMileageOptions = () => {
         const options = [];
-        for (let i = minMileage; i <= maxMileage; i += 5000) {
+        const mileages = carsData.cars.map(car => car.Mileage);
+        const minMileageRounded = Math.floor(Math.min(...mileages) / 1000) * 1000;
+        const maxMileageRounded = Math.ceil(Math.max(...mileages) / 1000) * 1000;
+        for (let i = minMileageRounded; i <= maxMileageRounded; i += 5000) {
             options.push(i);
         }
         return options;
