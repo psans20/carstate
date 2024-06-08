@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <nav className="p-4 md:p-6">
       <div className="flex justify-between items-center mx-4">
-        <Link href="/"><img src="https://i.ibb.co/6WpPk03/car-state-logo2-01.png" className='w-24 md:w-28 hover:cursor-pointer'/></Link>
+        <Link href="/"><img src="https://i.ibb.co/6WpPk03/car-state-logo2-01.png" className='w-20 md:w-28 hover:cursor-pointer'/></Link>
 
         <button 
           className="md:hidden" 

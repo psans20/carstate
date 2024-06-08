@@ -19,33 +19,30 @@ export default function Browse() {
     const [maxYear, setMaxYear] = useState(0);
     const [minMileage, setMinMileage] = useState(0);
     const [maxMileage, setMaxMileage] = useState(0);
+    const [sortCriteria, setSortCriteria] = useState('0');
 
     useEffect(() => {
         const uniqueMakes = [...new Set(carsData.cars.map(car => car.Make))];
         setMakes(uniqueMakes);
 
-        // Calculate the minimum and maximum prices rounded to the nearest thousand
         const prices = carsData.cars.map(car => car.Price);
         const minPriceRounded = Math.floor(Math.min(...prices) / 1000) * 1000;
         const maxPriceRounded = Math.ceil(Math.max(...prices) / 1000) * 1000;
         setMinPrice(minPriceRounded);
         setMaxPrice(maxPriceRounded);
 
-        // Calculate the minimum and maximum years
         const years = carsData.cars.map(car => car.Year);
         const minYear = Math.min(...years);
         const maxYear = Math.max(...years);
         setMinYear(minYear);
         setMaxYear(maxYear);
 
-        // Calculate the minimum and maximum mileage
         const mileages = carsData.cars.map(car => car.Mileage);
         const minMileageRounded = Math.floor(Math.min(...mileages) / 1000) * 1000;
         const maxMileageRounded = Math.ceil(Math.max(...mileages) / 1000) * 1000;
         setMinMileage(minMileageRounded);
         setMaxMileage(maxMileageRounded);
 
-        // Initially set filteredCars to all cars
         setFilteredCars(carsData.cars);
     }, []);
 
@@ -71,6 +68,32 @@ export default function Browse() {
         setSelectedModel(event.target.value);
     };
 
+    const handleSortChange = (event) => {
+        setSortCriteria(event.target.value);
+        sortCars(event.target.value);
+    };
+
+    const sortCars = (criteria) => {
+        let sortedCars = [...filteredCars];
+        switch (criteria) {
+            case 'Mileage':
+                sortedCars.sort((a, b) => a.Mileage - b.Mileage);
+                break;
+            case 'Year':
+                sortedCars.sort((a, b) => a.Year - b.Year);
+                break;
+            case 'Price(Lowest)':
+                sortedCars.sort((a, b) => a.Price - b.Price);
+                break;
+            case 'Price(Highest)':
+                sortedCars.sort((a, b) => b.Price - a.Price);
+                break;
+            default:
+                break;
+        }
+        setFilteredCars(sortedCars);
+    };
+
     const handleSearchButtonClick = () => {
         const filtered = carsData.cars.filter(car => {
             const matchMake = selectedMake === 'All' || car.Make === selectedMake;
@@ -81,12 +104,12 @@ export default function Browse() {
             return matchMake && matchModel && matchPrice && matchYear && matchMileage;
         });
         setFilteredCars(filtered);
-        setIsSearchVisible(false); // Optionally hide the search box after search
+        setIsSearchVisible(false);
+        sortCars(sortCriteria);
     };
 
     const carCount = filteredCars.length;
 
-    // Generate price options based on the min and max prices
     const generatePriceOptions = () => {
         const options = [];
         for (let i = minPrice; i <= maxPrice; i += 1000) {
@@ -95,7 +118,6 @@ export default function Browse() {
         return options;
     };
 
-    // Generate year options based on the min and max years
     const generateYearOptions = () => {
         const options = [];
         for (let i = minYear; i <= maxYear; i++) {
@@ -104,7 +126,6 @@ export default function Browse() {
         return options;
     };
 
-    // Generate mileage options based on the min and max mileage
     const generateMileageOptions = () => {
         const options = [];
         for (let i = minMileage; i <= maxMileage; i += 5000) {
@@ -269,8 +290,14 @@ export default function Browse() {
                     <select
                         id="result"
                         className="bg-[#ffffff19] border-[#ffffff19] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        value={sortCriteria}
+                        onChange={handleSortChange}
                     >
                         <option value="0">Sort By</option>
+                        <option value="Mileage">Mileage</option>
+                        <option value="Year">Year</option>
+                        <option value="Price(Lowest)">Price (Lowest)</option>
+                        <option value="Price(Highest)">Price (Highest)</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                     </div>

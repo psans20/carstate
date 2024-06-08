@@ -15,13 +15,11 @@ export default function Home() {
   const [filteredCars, setFilteredCars] = useState(carsData.cars);
 
   useEffect(() => {
-    // Extract unique makes from the car data
     const uniqueMakes = [...new Set(carsData.cars.map(car => car.Make))];
     setMakes(uniqueMakes);
   }, []);
 
   useEffect(() => {
-    // Filter models based on the selected make
     if (selectedMake === 'All') {
       setModels([]);
       setIsModelDisabled(true);
@@ -56,7 +54,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <div className="pt-24 px-10 flex flex-col gap-y-3">
+      <div className="pt-24 px-4 md:px-10 flex flex-col gap-y-6">
         <div className="lg:flex md:justify-around">
           <div className="flex flex-col gap-y-3 px-4">
             <h1 className="text-white text-4xl font-bold text-start md:text-6xl">Car State</h1>
@@ -70,7 +68,7 @@ export default function Home() {
             </ul>
             <Link href="/browse"><button className="bg-[#3a87de] text-white font-semibold w-48 h-12 mt-4 rounded-md">View Our Vehicles</button></Link>
           </div>
-          <img src="https://i.ibb.co/GsMc4XC/2-removebg-preview.png" className="mt-12 md:w-[750px] w-full" />
+          <img src="https://i.ibb.co/GsMc4XC/2-removebg-preview.png" className="mt-12 w-full md:w-[750px]" />
         </div>
 
         <div className="searchBox flex flex-col md:flex-row md:justify-around md:gap-x-4 items-center md:px-10 lg:px-7 2xl:px-60">
@@ -105,12 +103,10 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:px-72 2xl:mr-40 gap-4 lg:gap-1 px-4">
-  {filteredCars.slice(0, 3).map((car, index) => (
-    <Carad key={index} car={car} index={index} />
-  ))}
-</div>
-
-
+          {filteredCars.slice(0, 3).map((car, index) => (
+            <Carad key={index} car={car} index={index} />
+          ))}
+        </div>
       </div>
       <Footer />
     </main>
