@@ -5,8 +5,12 @@ import Link from 'next/link';
 
 export default function Carad({ car, index }) {
   function k(num) {
-    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'K' : Math.sign(num)*Math.abs(num);
+    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
   }
+
+  const handleViewClick = () => {
+    localStorage.setItem('selectedCar', JSON.stringify(car));
+  };
 
   return (
     <div className='border border-gray-800 rounded-md max-w-xs md:max-w-sm lg:max-w-md mx-auto mt-12 md:w-72'>
@@ -32,7 +36,11 @@ export default function Carad({ car, index }) {
           </ul>
 
           <div className='flex justify-center mt-4'>
-            <Link href={`/vehicle?index=${index}`}><button className="bg-[#3a87de] text-white font-semibold w-48 h-12 mt-4 rounded-md mx-auto">View</button></Link>
+            <Link href="/vehicle">
+              <button className="bg-[#3a87de] text-white font-semibold w-48 h-12 mt-4 rounded-md mx-auto" onClick={handleViewClick}>
+                View
+              </button>
+            </Link>
           </div>
         </div>
       </div>

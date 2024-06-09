@@ -1,12 +1,10 @@
 "use client";
 import { Suspense, useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Slider from 'react-slick';
 import { IoCalendarNumberOutline, IoCalculatorOutline, IoSpeedometerOutline } from "react-icons/io5";
 import { BsFuelPump } from "react-icons/bs";
 import { TbManualGearbox } from "react-icons/tb";
 import { PiEngine } from 'react-icons/pi';
-import carsData from '../data/cars.json';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import "slick-carousel/slick/slick.css";
@@ -20,6 +18,7 @@ const NextArrow = (props) => {
       style={{ display: "block", background: "rgba(0, 0, 0, 0)", right: "10px", zIndex: 1, position: "absolute", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}
       onClick={onClick}
     >
+      <i className="fa fa-chevron-right"></i>
     </div>
   );
 };
@@ -32,28 +31,27 @@ const PrevArrow = (props) => {
       style={{ display: "block", background: "rgba(0, 0, 0, 0)", left: "10px", zIndex: 1, position: "absolute", top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}
       onClick={onClick}
     >
+      <i className="fa fa-chevron-left"></i>
     </div>
   );
 };
 
 const VehicleDetails = () => {
-  const searchParams = useSearchParams();
-  const index = searchParams.get('index');
   const [car, setCar] = useState(null);
 
   useEffect(() => {
-    const carIndex = parseInt(index, 10);
-    if (!isNaN(carIndex) && carIndex >= 0 && carIndex < carsData.cars.length) {
-      setCar(carsData.cars[carIndex]);
+    const storedCar = localStorage.getItem('selectedCar');
+    if (storedCar) {
+      setCar(JSON.parse(storedCar));
     }
-  }, [index]);
+  }, []);
 
   function comma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   if (!car) {
-    return <div>Error: Car not found</div>;
+    return <div className="text-white">Error: Car not found</div>;
   }
 
   const settings = {
