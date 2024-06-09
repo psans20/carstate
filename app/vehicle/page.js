@@ -111,14 +111,14 @@ const VehicleDetails = () => {
           <PiEngine size={30} />
           <div className='flex flex-col items-center'>
             <h2 className='text-xs'>Engine Size</h2>
-            <h2 className='text-md'>2.0 Litres</h2>
+            <h2 className='text-md'>{car.Engine}</h2>
           </div>
         </li>
         <li className='flex flex-col gap-y-2 items-center'>
           <IoSpeedometerOutline size={30} />
           <div className='flex flex-col items-center'>
             <h2 className='text-xs'>BHP</h2>
-            <h2 className='text-md'>200</h2>
+            <h2 className='text-md'>{car.BHP}</h2>
           </div>
         </li>
       </div>
