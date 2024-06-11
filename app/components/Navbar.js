@@ -41,14 +41,7 @@ export default function Navbar() {
               Browse Vehicles
             </a>
           </li>
-          <li>
-            <a 
-              href="/sell" 
-              className={pathname === "/sell" ? "border-b-[3px] border-solid py-2 border-[#3a87de]" : ""}
-            >
-              Sell Your Car
-            </a>
-          </li>
+    
           <li>
             <a 
               href="/contact" 
@@ -82,14 +75,7 @@ export default function Navbar() {
             Browse Vehicles
           </a>
         </li>
-        <li className="py-2">
-          <a 
-            href="/sell" 
-            className={pathname === "/sell" ? "font-bold" : ""}
-          >
-            Sell Your Car
-          </a>
-        </li>
+      
         <li className="py-2">
           <a 
             href="/contact" 
